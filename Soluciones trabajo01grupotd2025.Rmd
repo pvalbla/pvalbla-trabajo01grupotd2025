@@ -1,0 +1,173 @@
+---
+title: "Soluciones trabajo01grupotd2025"
+author: "Cristóbal Delgado"
+date: "2025-10-22"
+output: html_document
+---
+
+### A. Caso favorable
+
+```{r}
+source("teoriadecision_funciones_incertidumbre.R")
+tabla_1 = crea.tablaX(c(,10,16,1, 8,
+                      4,7,11,9, 13,
+                      6,1,13,5, 12),
+                    numalternativas =3,
+                    numestados = 5)
+knitr::kable(tabla_1)
+
+# Aplicamos los criterios de decisión bajo incertidumbre
+
+# Criterio de Wald (pesimista)
+optimista_fav <- criterio.Wald(tabla_1, favorable = TRUE)
+cat("La decisión óptima para el criterio de Wald (pesimista) es:",
+    optimista_fav$AlternativaOptima)
+
+# Criterio Optimista (Maximax)
+Wald_pes_fav <- criterio.Optimista(tabla_1, favorable = TRUE)
+cat("La decisión óptima para el criterio Optimista (Maximax) es:",
+    Wald_pes_fav$AlternativaOptima)
+
+# Criterio de Hurwicz
+hurwicz_fav <- criterio.Hurwicz(tabla_1, alfa = 0.4, favorable = TRUE)
+cat("La decisión óptima para el criterio de Hurwicz es:",
+    hurwicz_fav$AlternativaOptima)
+
+# Criterio de Savage (minimax)
+savage_fav <- criterio.Savage(tabla_1, favorable = TRUE)
+cat("La decisión óptima para el criterio de Savage (minimax) es:",
+    savage_fav$AlternativaOptima)
+
+# Criterio de Laplace
+laplace_fav <- criterio.Laplace(tabla_1, favorable = TRUE)
+cat("La decisión óptima para el criterio de Laplace es:",
+    laplace_fav$AlternativaOptima)
+
+# Criterio del Punto Ideal
+puntoideal_fav <- criterio.PuntoIdeal(tabla_1, favorable = TRUE)
+cat("La decisión óptima para el criterio del Punto Ideal es:",
+    puntoideal_fav$AlternativaOptima)
+
+# Dibujos de Hurwicz
+dibuja.criterio.Hurwicz(tabla_1, TRUE)
+grafica_fav=dibuja.criterio.Hurwicz_Intervalos(tabla_1, TRUE, TRUE)
+grafica_fav
+
+cat("El alpha donde la alternativa óptima cambia de la segunda a la primera es: ",grafica_fav$PuntosDeCorte)
+
+```
+
+```{r}
+
+# Mostrar todos los criterios juntos
+sol_fav=criterio.Todos(tabla_1, 0.4, favorable = TRUE)
+
+library(tinytable)
+tt(sol_fav, rownames = TRUE)
+
+```
+
+d2 es la alternativa más recomendada, ya que ha sido seleccionada como óptima por todos los criterios, salvo por el optimista.
+
+### B. Caso desfavorable
+
+```{r}
+# Aplicar los criterios de decisión bajo incertidumbre
+
+# Criterio de Wald (pesimista)
+wald_pes_des <- criterio.Wald(tabla_1, favorable = FALSE)
+cat("La decisión óptima para el criterio de Wald (pesimista) es:",
+    wald_pes_des$AlternativaOptima)
+
+# Criterio Optimista (Minimin)
+optimista_des <- criterio.Optimista(tabla_1, favorable = FALSE)
+cat("La decisión óptima para el criterio Optimista (minimin) es:",
+    optimista_des$AlternativaOptima)
+
+# Criterio de Hurwicz
+hurwicz_des <- criterio.Hurwicz(tabla_1, alfa = 0.4, favorable = FALSE)
+cat("La decisión óptima para el criterio de Hurwicz es:",
+    hurwicz_des$AlternativaOptima)
+
+# Criterio de Savage (minimax arrepentimiento)
+savage_des <- criterio.Savage(tabla_1, favorable = FALSE)
+cat("La decisión óptima para el criterio de Savage (minimax del arrepentimiento) es:",
+    savage_des$AlternativaOptima)
+
+# Criterio de Laplace (promedio equiprobable)
+laplace <- criterio.Laplace(tabla_1, favorable = FALSE)
+cat("La decisión óptima para el criterio de Laplace (equiprobable) es:",
+    laplace$AlternativaOptima)
+
+# Criterio del Punto Ideal
+punto_ideal_des <- criterio.PuntoIdeal(tabla_1, favorable = FALSE)
+cat("La decisión óptima para el criterio del Punto Ideal es:",
+    punto_ideal_des$AlternativaOptima)
+
+# Dibujos de Hurwicz
+dibuja.criterio.Hurwicz(tabla_1, FALSE)
+grafica_des=dibuja.criterio.Hurwicz_Intervalos(tabla_1, FALSE, TRUE)
+grafica_des
+
+cat("El alpha donde la alternativa óptima cambia de la segunda a la primera es: ",grafica_des$PuntosDeCorte)
+
+```
+
+```{r}
+# Mostrar todos los criterios juntos
+sol_des = criterio.Todos(tabla_1, 0.4, favorable = FALSE)
+
+library(tinytable)
+tt(sol_des, rownames = TRUE)
+
+```
+
+d3 es la alternativa más recomendada, por todos los criterios, ya que ha sido seleccionada como óptima en todas.
+\newpage
+
+## Problema 2
+
+Una pareja quiere independizarse e irse a vivir juntos, por lo que están barajando opciones para hipotecarse. Las alternativas son las siguientes:
+
+- Hipoteca a tipo fijo: cuotas constantes a lo largo de la vida de la hipoteca, proporciona más seguridad pero tambien cuotas más altas.
+- Hipoteca a tipo variable: cuotas más bajas por lo general, pero tiene el riesgo de que el euribor suba mucho
+- Hipoteca mixta: proporciona unas cuotas fijas en un periodo inicial, complementado con un periodo posterior de cuotas sujetas al euribor. Permite una previsibilidad inicial y oportunidades de tipos de interés menores, con un riesgo algo menor que a tipo variable. Se tomará un valor medio para tener en cuenta ambos periodos.
+
+Al ir al banco, les han explicado los posibles escenarios que pueden ocurrir, para facilitar su toma de decision:
+-Euríbor baja mucho: la hipoteca fija tendría un pago de 12.000 €, la variable 8.000 € y la mixta 10.000 €.
+
+- Euríbor baja poco: la fija 12.000 €, la variable 10.000 € y la mixta 11.000 €.
+- Euríbor sube poco: la fija 12.000 €, la variable 14.000 € y la mixta 13.000 €.
+- Euríbor sube mucho: la fija 12.000 €, la variable 18.000 € y la mixta 15.000 €.
+
+Después de ver las alternativas, su objetivo es sopesar cual les conviene más para ahorrar todo lo que puedan.
+
+```{r}
+tabla_2<-crea.tablaX(
+  c(12000, 12000, 12000,12000,  # Hipoteca fija
+    8000, 10000, 14000, 18000,  # Hipoteca variable
+    10000, 11000, 13000, 15000), # Hipoteca mixta
+  numalternativas = 3,
+  numestados = 4,
+  nb_estados= c("Euribor baja mucho", "Euribor baja poco", "Euribor sube poco", "Euribor sube mucho"),
+  nb_alternativas=c("Hipoteca fija", "Hipoteca variable", "Hipoteca mixta") )
+
+tabla_2
+
+solucion_2 = criterio.Todos(tabla_2, 0.5, favorable = FALSE)
+library(tinytable)
+tt(solucion_2, rownames = TRUE)
+
+```
+
+Según los distintos criterios, la pareja debería pedir una hipoteca a tipo fijo.
+
+```{r}
+# Dibujos de Hurwicz
+dibuja.criterio.Hurwicz(tabla_2, TRUE)
+
+```
+
+Observando el gráfico, se aprecia  que la alternativa de hipoteca fija es óptima para alfas menores a 0.4 y la variable es mejor a aprtir de este nivel.
+
+\newpage
