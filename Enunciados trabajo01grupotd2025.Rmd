@@ -39,3 +39,35 @@ Al ir al banco, les han explicado los posibles escenarios que pueden ocurrir, pa
 Después de ver las alternativas, su objetivo es sopesar cual les conviene más para ahorrar todo lo que puedan.
 
 \newpage
+
+# Enunciados Alejandro Jurado Luque
+
+## Problema 1: Inversión en Nuevas Tecnologías (Valores Inventados)
+
+Una empresa tecnológica está considerando tres alternativas de inversión ($A_1, A_2, A_3$) para el próximo año fiscal. El resultado de estas inversiones dependerá del estado futuro del mercado ($E_1$: Expansión, $E_2$: Estancamiento, $E_3$: Recesión), sobre el cual la empresa no tiene información probabilística fiable. Los resultados esperados (en miles de euros) se han tabulado a continuación.
+
+| Opciones | $E_1$: Expansión | $E_2$: Estancamiento | $E_3$: Recesión |
+|:--:|:--:|:--:|:--:|
+| $A_1$: Inversión en IA | 800 | 400 | -200 |
+| $A_2$: Expansión del mercado | 500 | 500 | 100 |
+| $A_3$: Asentar proyecto | 300 | 450 | 300 |
+
+a)  **Situación Favorable (Ganancias/Beneficios):** Asumiendo que los valores de la tabla representan **ganancias** (en miles de euros), aplique individualmente cada uno de los siguientes criterios de decisión bajo incertidumbre para determinar la alternativa óptima. Considere un coeficiente de optimismo $\alpha = 0.6$.
+
+b)  **Situación Desfavorable (Costos):** Asumiendo que los valores de la tabla representan **costos** (en miles de euros) y el objetivo es minimizarlos, aplique individualmente cada uno de los siguientes criterios. Considere un coeficiente de optimismo $\alpha = 0.6$ para Hurwicz, adaptado a costos.
+
+\newpage
+
+## Problema 2: Decisión de Cultivo en Almería (Situación Real)
+
+Una empresa agrícola está considerando tres alternativas de cultivo (Tomates, Pimientos, Cebollas) para el próximo año agrícola. En Almería, el clima afecta directamente a las rentabilidades de los cultivos, pudiendo darse 3 escenarios ($E_1$: Sequía, $E_2$: Clima Óptimo, $E_3$: Lluvias torrenciales), sobre el cual no se puede hacer una predicción. La rentabilidad de los cultivos por hectárea (en miles de €) depende de estas casuísticas.
+
+| Opciones | $E_1$: Sequía | $E_2$: Óptimo | $E_3$: Lluvias torrenciales |
+|:--------:|:-------------:|:-------------:|:---------------------------:|
+|  Tomate  |      20       |      100      |             40              |
+| Pimiento |      40       |      80       |             50              |
+| Cebolla  |      50       |      60       |             60              |
+
+a)  Asumiendo que los valores de la tabla representan **ganancias** (en miles de euros), aplique la **función R única** que devuelve la resolución de todos los métodos de decisión bajo incertidumbre en una sola tabla para determinar la alternativa óptima. Considere un coeficiente de optimismo $\alpha = 0.5$.
+
+\newpage
