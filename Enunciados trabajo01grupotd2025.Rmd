@@ -1,0 +1,40 @@
+---
+title: "Enunciados trabajo01grupotd2025"
+output: html_document
+date: "2025-10-22"
+---
+
+# Enunciados Cristóbal
+
+## Enunciado 1
+
+El primer problema a resolver es el dado por la siguiente tabla de desición:
+
+```{r echo = FALSE}
+source("teoriadecision_funciones_incertidumbre.R")
+tabla_1 = crea.tablaX(c(5,10,16,1, 8,
+                      4,7,11,9, 13,
+                      6,1,13,5, 12),
+                    numalternativas =3,
+                    numestados = 5)
+knitr::kable(tabla_1)
+
+```
+
+## Enunciado 2
+
+Una pareja quiere independizarse e irse a vivir juntos, por lo que están barajando opciones para hipotecarse. Las alternativas son las siguientes:
+
+- Hipoteca a tipo fijo: cuotas constantes a lo largo de la vida de la hipoteca, proporciona más seguridad pero tambien cuotas más altas.
+- Hipoteca a tipo variable: cuotas más bajas por lo general, pero tiene el riesgo de que el euribor suba mucho
+- Hipoteca mixta: proporciona unas cuotas fijas en un periodo inicial, complementado con un periodo posterior de cuotas sujetas al euribor. Permite una previsibilidad inicial y oportunidades de tipos de interés menores, con un riesgo algo menor que a tipo variable. Se tomará un valor medio para tener en cuenta ambos periodos.
+
+Al ir al banco, les han explicado los posibles escenarios que pueden ocurrir, para facilitar su toma de decision:
+-Euríbor baja mucho: la hipoteca fija tendría un pago de 12.000 €, la variable 8.000 € y la mixta 10.000 €.
+
+- Euríbor baja poco: la fija 12.000 €, la variable 10.000 € y la mixta 11.000 €.
+- Euríbor sube poco: la fija 12.000 €, la variable 14.000 € y la mixta 13.000 €.
+- Euríbor sube mucho: la fija 12.000 €, la variable 18.000 € y la mixta 15.000 €.
+
+Después de ver las alternativas, su objetivo es sopesar cual les conviene más para ahorrar todo lo que puedan.
+
