@@ -4,6 +4,7 @@ author: "Cristóbal Delgado"
 date: "2025-10-22"
 output: html_document
 ---
+# Soluciones Cristóbal Delgado
 
 ### A. Caso favorable
 

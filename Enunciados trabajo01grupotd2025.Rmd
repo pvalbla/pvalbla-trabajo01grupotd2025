@@ -4,7 +4,7 @@ output: html_document
 date: "2025-10-22"
 ---
 
-# Enunciados Cristóbal
+# Enunciados Cristóbal Delgado
 
 ## Enunciado 1
 
@@ -38,3 +38,4 @@ Al ir al banco, les han explicado los posibles escenarios que pueden ocurrir, pa
 
 Después de ver las alternativas, su objetivo es sopesar cual les conviene más para ahorrar todo lo que puedan.
 
+\newpage
