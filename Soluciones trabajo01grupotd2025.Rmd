@@ -172,3 +172,131 @@ dibuja.criterio.Hurwicz(tabla_2, TRUE)
 Observando el gráfico, se aprecia  que la alternativa de hipoteca fija es óptima para alfas menores a 0.4 y la variable es mejor a aprtir de este nivel.
 
 \newpage
+
+```{r}
+source("teoriadecision_funciones_incertidumbre.R")
+```
+
+# Trabajo Individual: Problemas de Teoría de la Decisión bajo Incertidumbre
+
+## Problema 1: Inversión en Nuevas Tecnologías (Valores Inventados)
+
+Una empresa tecnológica está considerando tres alternativas de inversión ($A_1, A_2, A_3$) para el próximo año fiscal. El resultado de estas inversiones dependerá del estado futuro del mercado ($E_1$: Expansión, $E_2$: Estancamiento, $E_3$: Recesión), sobre el cual la empresa no tiene información probabilística fiable. Los resultados esperados (en miles de euros) se han tabulado a continuación.
+
+| Opciones | $E_1$: Expansión | $E_2$: Estancamiento | $E_3$: Recesión |
+|:--:|:--:|:--:|:--:|
+| $A_1$: Inversión en IA | 800 | 400 | -200 |
+| $A_2$: Expansión del mercado | 500 | 500 | 100 |
+| $A_3$: Asentar proyecto | 300 | 450 | 300 |
+
+### Apartados de Resolución (Funciones R Individuales)
+
+a)  **Situación Favorable (Ganancias/Beneficios):** Asumiendo que los valores de la tabla representan **ganancias** (en miles de euros), aplique individualmente cada uno de los siguientes criterios de decisión bajo incertidumbre para determinar la alternativa óptima. Considere un coeficiente de optimismo $\alpha = 0.6$.
+
+```{r}
+#| echo: false
+
+vector_p1 = c(800, 400, -200, 500, 500, 100, 300, 450, 300)
+alternativas_p1 = c('A1_IA', 'A2_ExpM', 'A3_Asentar')
+estados_p1 = c('E1_Exp', 'E2_Est', 'E3_Rec')
+
+tablaX1 = crea.tablaX(vector_p1,
+                     numalternativas = 3,
+                     numestados = 3,
+                     nb_alternativas = alternativas_p1,
+                     nb_estados = estados_p1)
+print("Tabla de Decisión (en miles de €):")
+kableExtra::kable(tablaX1) 
+```
+
+```{r}
+#| echo: false
+  
+res_wald_fav = criterio.Wald(tablaX1, favorable = TRUE)
+print("Alternativa Óptima (Maximin):")
+print(res_wald_fav$AlternativaOptima)
+
+res_opt_fav = criterio.Optimista(tablaX1, favorable = TRUE)
+print("Alternativa Óptima (Maximax):")
+print(res_opt_fav$AlternativaOptima)
+
+res_hurwicz_fav = criterio.Hurwicz(tablaX1, alfa = 0.6, favorable = TRUE)
+print("Alternativa Óptima (Hurwicz):")
+print(res_hurwicz_fav$AlternativaOptima)
+
+res_sav_fav = criterio.Savage(tablaX1, favorable = TRUE)
+print("Alternativa Óptima (Savage):")
+print(res_sav_fav$AlternativaOptima)
+```
+
+b)  **Situación Desfavorable (Costos):** Asumiendo que los valores de la tabla representan **costos** (en miles de euros) y el objetivo es minimizarlos, aplique individualmente cada uno de los siguientes criterios. Considere un coeficiente de optimismo $\alpha = 0.6$ para Hurwicz, adaptado a costos.
+
+```{r}
+#| echo: false
+
+res_wald_desf = criterio.Wald(tablaX1, favorable = FALSE)
+print("Alternativa Óptima (Minimax - Costos):")
+print(res_wald_desf$AlternativaOptima)
+
+res_opt_desf = criterio.Optimista(tablaX1, favorable = FALSE)
+print("Alternativa Óptima (Minimin - Costos):")
+print(res_opt_desf$AlternativaOptima)
+
+res_hurwicz_desf = criterio.Hurwicz(tablaX1, alfa = 0.6, favorable = FALSE)
+print("Alternativa Óptima (Hurwicz - Costos):")
+print(res_hurwicz_desf$AlternativaOptima)
+
+res_sav_desf = criterio.Savage(tablaX1, favorable = FALSE)
+print("Alternativa Óptima (Savage - Costos):")
+print(res_sav_desf$AlternativaOptima)
+```
+
+\newpage
+
+------------------------------------------------------------------------
+
+## Problema 2: Decisión de Cultivo en Almería (Situación Real)
+
+Una empresa agrícola está considerando tres alternativas de cultivo (Tomates, Pimientos, Cebollas) para el próximo año agrícola. En Almería, el clima afecta directamente a las rentabilidades de los cultivos, pudiendo darse 3 escenarios ($E_1$: Sequía, $E_2$: Clima Óptimo, $E_3$: Lluvias torrenciales), sobre el cual no se puede hacer una predicción. La rentabilidad de los cultivos por hectárea (en miles de €) depende de estas casuísticas.
+
+| Opciones | $E_1$: Sequía | $E_2$: Óptimo | $E_3$: Lluvias torrenciales |
+|:--------:|:-------------:|:-------------:|:---------------------------:|
+|  Tomate  |      20       |      100      |             40              |
+| Pimiento |      40       |      80       |             50              |
+| Cebolla  |      50       |      60       |             60              |
+
+### Apartado de Resolución (Función R Única)
+
+```{r}
+#| echo: false
+vector_p2 = c(20, 100, 40, 40, 80, 50, 50, 60, 60)
+alternativas_p2 = c('Tomate', 'Pimiento', 'Cebolla')
+estados_p2 = c('E1_Sequia', 'E2_Optimo', 'E3_Lluvias')
+
+tablaX2 = crea.tablaX(vector_p2,
+                     numalternativas = 3,
+                     numestados = 3,
+                     nb_alternativas = alternativas_p2,
+                     nb_estados = estados_p2)
+
+print("Matriz de Decisión (en miles de €):")
+kableExtra::kable(tablaX2)
+```
+
+a)  Asumiendo que los valores de la tabla representan **ganancias** (en miles de euros), aplique la **función R única** que devuelve la resolución de todos los métodos de decisión bajo incertidumbre en una sola tabla para determinar la alternativa óptima. Considere un coeficiente de optimismo $\alpha = 0.5$.
+
+```{r}
+#| echo: false
+
+res_p2 = criterio.Todos(tablaX2, alfa = 0.5, favorable = TRUE)
+print("Tabla de Resultados de Criterios (Alfa = 0.5):")
+res_p2
+
+alt_equilibrada = res_p2[nrow(res_p2), "Veces Optima"]
+
+print("Alternativa Óptima más Equilibrada (por Frecuencia):")
+print(alt_equilibrada)
+```
+
+\newpage
+
