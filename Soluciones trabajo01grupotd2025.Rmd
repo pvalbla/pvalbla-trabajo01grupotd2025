@@ -169,7 +169,7 @@ dibuja.criterio.Hurwicz(tabla_2, TRUE)
 
 ```
 
-Observando el gráfico, se aprecia  que la alternativa de hipoteca fija es óptima para alfas menores a 0.4 y la variable es mejor a aprtir de este nivel.
+Observando el gráfico, se aprecia  que la alternativa de hipoteca fija es óptima para alfas menores a 0.4 y la variable es mejor a a partir de este nivel.
 
 \newpage
 
@@ -177,28 +177,25 @@ Observando el gráfico, se aprecia  que la alternativa de hipoteca fija es ópti
 source("teoriadecision_funciones_incertidumbre.R")
 ```
 
-# Trabajo Individual: Problemas de Teoría de la Decisión bajo Incertidumbre
+# Problemas Alejandro Jurado Luque
 
-## Problema 1: Inversión en Nuevas Tecnologías (Valores Inventados)
+## Problema 1: Tabla de Decisión
 
-Una empresa tecnológica está considerando tres alternativas de inversión ($A_1, A_2, A_3$) para el próximo año fiscal. El resultado de estas inversiones dependerá del estado futuro del mercado ($E_1$: Expansión, $E_2$: Estancamiento, $E_3$: Recesión), sobre el cual la empresa no tiene información probabilística fiable. Los resultados esperados (en miles de euros) se han tabulado a continuación.
-
-| Opciones | $E_1$: Expansión | $E_2$: Estancamiento | $E_3$: Recesión |
+| Opciones | $E_1$ | $E_2$ | $E_3$ |
 |:--:|:--:|:--:|:--:|
-| $A_1$: Inversión en IA | 800 | 400 | -200 |
-| $A_2$: Expansión del mercado | 500 | 500 | 100 |
-| $A_3$: Asentar proyecto | 300 | 450 | 300 |
+| $A_1$ | 800 | 400 | -200 |
+| $A_2$ | 500 | 500 | 100 |
+| $A_3$ | 300 | 450 | 300 |
 
 ### Apartados de Resolución (Funciones R Individuales)
 
-a)  **Situación Favorable (Ganancias/Beneficios):** Asumiendo que los valores de la tabla representan **ganancias** (en miles de euros), aplique individualmente cada uno de los siguientes criterios de decisión bajo incertidumbre para determinar la alternativa óptima. Considere un coeficiente de optimismo $\alpha = 0.6$.
-
+a)  **Situación Favorable (Ganancias/Beneficios):** Asumiendo que los valores de la tabla representan **ganancias** (en miles de euros)
 ```{r}
 #| echo: false
 
 vector_p1 = c(800, 400, -200, 500, 500, 100, 300, 450, 300)
-alternativas_p1 = c('A1_IA', 'A2_ExpM', 'A3_Asentar')
-estados_p1 = c('E1_Exp', 'E2_Est', 'E3_Rec')
+alternativas_p1 = c('A1', 'A2', 'A3')
+estados_p1 = c('E1', 'E2', 'E3')
 
 tablaX1 = crea.tablaX(vector_p1,
                      numalternativas = 3,
@@ -227,9 +224,11 @@ print(res_hurwicz_fav$AlternativaOptima)
 res_sav_fav = criterio.Savage(tablaX1, favorable = TRUE)
 print("Alternativa Óptima (Savage):")
 print(res_sav_fav$AlternativaOptima)
+
+dibuja.criterio.Hurwicz(tablaX1, favorable = TRUE)
 ```
 
-b)  **Situación Desfavorable (Costos):** Asumiendo que los valores de la tabla representan **costos** (en miles de euros) y el objetivo es minimizarlos, aplique individualmente cada uno de los siguientes criterios. Considere un coeficiente de optimismo $\alpha = 0.6$ para Hurwicz, adaptado a costos.
+b)  **Situación Desfavorable (Costos):** Asumiendo que los valores de la tabla representan **costos** (en miles de euros).
 
 ```{r}
 #| echo: false
@@ -249,9 +248,9 @@ print(res_hurwicz_desf$AlternativaOptima)
 res_sav_desf = criterio.Savage(tablaX1, favorable = FALSE)
 print("Alternativa Óptima (Savage - Costos):")
 print(res_sav_desf$AlternativaOptima)
-```
 
-\newpage
+dibuja.criterio.Hurwicz(tablaX1, favorable = FALSE)
+```
 
 ------------------------------------------------------------------------
 
@@ -297,6 +296,9 @@ alt_equilibrada = res_p2[nrow(res_p2), "Veces Optima"]
 print("Alternativa Óptima más Equilibrada (por Frecuencia):")
 print(alt_equilibrada)
 ```
+
+\newpage
+
 
 \newpage
 
