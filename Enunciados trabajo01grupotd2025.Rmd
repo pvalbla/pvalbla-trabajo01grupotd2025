@@ -40,6 +40,8 @@ Después de ver las alternativas, su objetivo es sopesar cual les conviene más 
 
 \newpage
 
+# Enunciados Alejandro Jurado Luque
+
 ## Problema 1: Inversión en Nuevas Tecnologías (Valores Inventados)
 
 Una empresa tecnológica está considerando tres alternativas de inversión ($A_1, A_2, A_3$) para el próximo año fiscal. El resultado de estas inversiones dependerá del estado futuro del mercado ($E_1$: Expansión, $E_2$: Estancamiento, $E_3$: Recesión), sobre el cual la empresa no tiene información probabilística fiable. Los resultados esperados (en miles de euros) se han tabulado a continuación.
@@ -49,8 +51,6 @@ Una empresa tecnológica está considerando tres alternativas de inversión ($A_
 | $A_1$: Inversión en IA | 800 | 400 | -200 |
 | $A_2$: Expansión del mercado | 500 | 500 | 100 |
 | $A_3$: Asentar proyecto | 300 | 450 | 300 |
-
-### Apartados de Resolución (Funciones R Individuales)
 
 a)  **Situación Favorable (Ganancias/Beneficios):** Asumiendo que los valores de la tabla representan **ganancias** (en miles de euros), aplique individualmente cada uno de los siguientes criterios de decisión bajo incertidumbre para determinar la alternativa óptima. Considere un coeficiente de optimismo $\alpha = 0.6$.
 
