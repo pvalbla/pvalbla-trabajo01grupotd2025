@@ -15,3 +15,8 @@ El objetivo es aplicar los distintos criterios de decisión en situaciones de in
 - Cristóbal Delgado López  
 - Pablo Valdés Blasco  
 - Gustavo Carballar Patilla
+
+## Organización
+Tras ver la asignación de los profesores de la asignatura, nos ponemos en contacto e inicialmente creamos un grupo de WhatsApp con los 4 integrantes. 
+
+A continuación, Pablo crea el repositorio, y acordamos que cada uno vaya creando sus problemas individuales. La idea es luego organizarnos usando git, e ir agregando issues con las tareas correspondientes. Así cada uno fue confeccionando el documento de enunciados y soluciones, hasta la versión actual que es la que pueden observar en el presente repositorio. 
