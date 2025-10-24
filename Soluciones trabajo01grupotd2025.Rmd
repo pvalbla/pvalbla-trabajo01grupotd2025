@@ -391,3 +391,201 @@ tt(sol2, rownames = TRUE)
 **Conclusión:**  
 Los resultados muestran que la alternativa **B3 (precio estándar)** es la más sólida y estable, siendo elegida como óptima en varios criterios, especialmente en Hurwicz y Laplace.  
 Por tanto, la librería debería optar por **mantener un precio estándar**, ya que proporciona un equilibrio adecuado entre riesgo y rentabilidad frente a la incertidumbre del mercado.
+
+
+\newpage
+# Problemas Gustavo Carballar
+## Problema 1
+
+Una empresa catalana de alimentación ubicada en Miralcamp, Lérida, está planteando elegir la mejor cámara de enfriamiento (K1,K2,K3,K4) para sus secaderos de jamones, dentro de las 4 mejores del mercado.
+
+Bajo 3 escenarios operativos (S1,S2,S3), donde S1 significa Invierno Frío-Seco, S2 significa Verano Caluroso-Húmedo, S3 significa picos de producción con tope energético, los beneficios netos esperados (en miles de €), son:
+
+|        | **S1** | **S2** | **S3** |
+|:------:|:------:|:------:|:------:|
+| **K1** |   24   |   16   |   10   |
+| **K2** |   28   |   20   |   15   |
+| **K3** |   26   |   14   |   8    |
+| **K4** |   22   |   18   |   12   |
+
+
+Resolver tanto suponiendo que son costes como suponiendo que son beneficios. 
+
+```{r}
+source("https://raw.githubusercontent.com/calote/TDecisionCodigo/refs/heads/master/teoriadecision_funciones_incertidumbre.R")
+
+## Tabla de beneficios (miles de euros):
+tabla1 = crea.tablaX(c(24,16,10,
+28,20,15,
+26,14, 8,
+22,18,12), 4, 3)
+rownames(tabla1) <- c("K1","K2","K3","K4")
+colnames(tabla1) <- c("S1","S2","S3")
+
+```
+
+### Resolución en el caso de beneficios
+
+**Apartado 1:** Resuelvo el problema suponiendo que los datos son beneficios
+
+```{r}
+# Pesimista (Wald)
+
+p1_pes = criterio.Wald(tabla1, TRUE)
+p1_pes$AlternativaOptima
+
+# Optimista
+
+p1_opt = criterio.Optimista(tabla1, TRUE)
+p1_opt$AlternativaOptima
+
+# Hurwicz
+
+p1_hur = criterio.Hurwicz(tabla1, TRUE)
+p1_hur$AlternativaOptima
+
+# Estudio de la mejor alternativa en función del valor de alfa
+
+dibuja.criterio.Hurwicz(tabla1, favorable = TRUE)
+
+# Savage (minimax del arrepentimiento)
+
+p1_savage = criterio.Savage(tabla1, TRUE)
+p1_savage$AlternativaOptima
+
+# Laplace (equiprobable)
+
+p1_laplace = criterio.Laplace(tabla1, TRUE)
+p1_laplace$AlternativaOptima
+
+# Punto ideal
+
+p1_puntoideal = criterio.PuntoIdeal(tabla1, TRUE)
+p1_puntoideal$AlternativaOptima
+
+# Resumen de todos
+
+p1_todos = criterio.Todos(tabla1, alfa = 0.5, TRUE)
+
+# Tabla resumen
+
+library(tinytable)
+tt(criterio.Todos(tabla1, 0.5, favorable = TRUE), rownames = TRUE)
+```
+
+
+### Conclusión
+
+Con la matriz de beneficios anterior, observamos en la tabla de resultados que todos los criterios nos devuelven K2 como la mejor decisión, por lo que K2 será la mejor cámara de enfriamiento para la empresa.
+
+Nótese que por el método de Hurwicz hemos obtenido que para cualquier valor de alfa, la decisión óptima es tomar K2. Tengamos en cuenta que si nos fijamos en los datos, descriptivamente podemos ver que es el congelador que reporta a la empresa mayores beneficios netos esperados, así que es coherente que hayamos obtenido esto.
+
+### Resolución el caso de costes
+
+**Apartado 2:** Análogamente resolvamos el problema suponiendo ahora que los datos son costes. En este caso cambia la película, porque si justo en las conclusiones anteriores nos fijábamos en que K2 era la de mayores valores, si ahora son costes, K2 será la de mayores costes, con lo cuál nunca podría ser la mejor decisión.
+
+En este caso, descriptivamente vemos que K3 será la cámara de menores costes, y la que elijamos si nos fijamos en los costes para adquirirlas.
+
+```{r}
+# Pesimista
+p2_pes = criterio.Wald(tabla1,F)
+p2_pes$AlternativaOptima
+
+# Optimista
+p2_opt = criterio.Optimista(tabla1,F)
+p2_opt$AlternativaOptima
+
+# Hurwicz
+p2_hur = criterio.Hurwicz(tabla1,F)
+p2_hur$AlternativaOptima
+
+# Estudio de la mejor alternativa en función del valor de alfa
+dibuja.criterio.Hurwicz(tabla1, favorable=FALSE)
+
+# Obtengo el resultado de cual es la mejor alternativa para cada cada valor de alfa
+dibuja.criterio.Hurwicz_Intervalos(tabla1, favorable =FALSE)
+
+# Savage
+p2_savage = criterio.Savage(tabla1,F)
+p2_savage$AlternativaOptima
+
+# Laplace
+p2_laplace = criterio.Laplace(tabla1,F)
+p2_laplace$AlternativaOptima
+
+# Punto ideal
+p2_puntoideal = criterio.PuntoIdeal(tabla1,F)
+p2_puntoideal$AlternativaOptima
+
+# Resumen de todos
+p2_todos = criterio.Todos(tabla1,alfa=0.5, F)
+# p2_todos
+
+# tinytex::reinstall_tinytex(repository = "illinois")
+# tinytex::tlmgr_install("tabularray")
+library(tinytable)
+tt(criterio.Todos(tabla1, 0.5, favorable = FALSE), rownames = TRUE)
+
+```
+
+
+### Conclusión
+
+En el caso de los costes es algo ambiguo, si somos optimistas elegiríamos K3, y si somos pesimistas K1, pero podríamos defender ambas decisiones. Todo dependería del valor de alpha fijado, en caso que tuviésemos uno, para elegir K1 o K3.
+
+Otra opción, si yo fuese el dueño de la empresa y tuviese que decidir entre K1 o K3, elegiría la que me reporte mayores beneficios a largo plazo.
+
+## Problema 2
+
+La empresa alimentaria anterior debe decidir su estrategia comercial principal para el próximo año. Las alternativas son:
+
+D1 – Potenciar su producto más conocido, el jamón cocido bonnatur.
+
+D2 – Impulsar la producción en el jamón ibérico, tanto pieza entera como cortado y envasado al vacío.
+
+D3 – Foco en un nuevos productos pre cocinados como pastas y gazpacho.
+
+Escenarios de demanda:
+
+E1 – Demanda alta (campañas fuertes y tirón exportador)
+
+E2 – Demanda media (mercado estable)
+
+E3 – Demanda baja (ajuste del consumo por crisis/restricciones)
+
+Los beneficios esperados (en miles de euros) son:
+
+|        | **E1** | **E2** | **E3** |
+|:------:|:------:|:------:|:------:|
+| **D1** |  280   |  200   |  100   |
+| **D2** |  320   |  190   |   80   |
+| **D3** |  200   |  170   |  150   |
+
+### Resolución
+
+Vamos a resolver el problema anterior:
+
+```{r}
+tabla2=crea.tablaX(c(280,200,100,
+                     320,190,80,
+                     200,170,150),3,3)
+colnames(tabla2) = c("Alta demanda", "Media", "Baja")
+rownames(tabla2)= c("Bonnatur","JamónIB","Cocina")
+
+# Resolvemos con la función de todos
+p3_todos = criterio.Todos(tabla2,alfa=0.5, T)
+
+# Estudio de la mejor alternativa en función del valor de alfa
+dibuja.criterio.Hurwicz(tabla2, favorable=T)
+
+# Obtengo el resultado de cual es la mejor alternativa para cada cada valor de alfa
+dibuja.criterio.Hurwicz_Intervalos(tabla2, favorable =T)
+
+
+# tinytex::reinstall_tinytex(repository = "illinois")
+# tinytex::tlmgr_install("tabularray")
+# library(tinytable)
+tt(criterio.Todos(tabla2, 0.5, favorable = TRUE), rownames = TRUE)
+```
+
+En el análisis de decisiones bajo incertidumbre, la empresa debería elegir Jamón Ibérico como producto a impulsar el año que viene, pues es la alternativa que proporciona mayores ventajas para la empresa (aparece en 3 de los 6 criterios utilizados).
