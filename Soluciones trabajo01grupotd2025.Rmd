@@ -4,7 +4,8 @@ author: "Cristóbal Delgado"
 date: "2025-10-22"
 output: html_document
 ---
-# Soluciones Cristóbal Delgado
+# Problemas Cristóbal Delgado
+## Problema 1
 
 ### A. Caso favorable
 
@@ -297,14 +298,31 @@ print("Alternativa Óptima más Equilibrada (por Frecuencia):")
 print(alt_equilibrada)
 ```
 
-\newpage
 
 
 \newpage
 
-# Soluciones Pablo Valdés
+# Problemas Pablo Valdés
 
 # Problema 1. 
+Una startup debe elegir una de cuatro **campañas publicitarias** para lanzar un nuevo libro técnico. La respuesta del mercado es incierta y se consideran tres estados:
+
+- **E1:** Baja demanda  
+- **E2:** Demanda media  
+- **E3:** Alta demanda  
+
+Las alternativas de decisión son:
+**A1**, **A2**, **A3**, **A4** (cuatro campañas distintas).
+
+La siguiente **matriz de pagos** (en unidades monetarias) recoge beneficios positivos y pérdidas negativas para cada combinación Alternativa–Estado:
+
+|        |  E1 |  E2 |  E3 |
+|:-------|----:|----:|----:|
+| **A1** |   8 |  -2 |   5 |
+| **A2** |   4 |   3 |   6 |
+| **A3** |  10 |  -6 |   1 |
+| **A4** |   7 |   2 |   2 |
+
 
 ## Apartado A. Caso favorable (beneficios)
 
@@ -372,6 +390,27 @@ Por tanto, si el contexto es incierto o con tendencia a pérdidas, **A1** sería
 ---
 
 # Problema 2.
+Una librería online va a lanzar una novedad editorial y debe elegir su **política de precios** ante tres escenarios de demanda incierta:
+
+- **E1:** Demanda baja  
+- **E2:** Demanda media  
+- **E3:** Alta demanda  
+
+Se consideran cuatro estrategias de precio:
+
+- **B1:** Precio agresivo (descuento alto)  
+- **B2:** Precio medio con cupón  
+- **B3:** Precio estándar  
+- **B4:** Precio *premium* con extras  
+
+Matriz de **beneficio esperado** (en cientos de euros) estrategia–escenario:
+
+|        |  E1 |  E2 |  E3 |
+|:------ |----:|----:|----:|
+| **B1** |   3 |   7 |   4 |
+| **B2** |   2 |   6 |   6 |
+| **B3** |   4 |   5 |   8 |
+| **B4** |   1 |   4 |  10 |
 
 ## Resolución (caso favorable)
 
