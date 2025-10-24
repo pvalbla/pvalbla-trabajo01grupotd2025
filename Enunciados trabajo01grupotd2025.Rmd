@@ -119,3 +119,49 @@ Matriz de **beneficio esperado** (en cientos de euros) estrategia–escenario:
 | **B2** |   2 |   6 |   6 |
 | **B3** |   4 |   5 |   8 |
 | **B4** |   1 |   4 |  10 |
+
+
+\newpage
+# Enunciados Gustavo Carballar
+## Problema 1
+
+Una empresa catalana de alimentación ubicada en Miralcamp, Lérida, está planteando elegir la mejor cámara de enfriamiento (K1,K2,K3,K4) para sus secaderos de jamones, dentro de las 4 mejores del mercado.
+
+Bajo 3 escenarios operativos (S1,S2,S3), donde S1 significa Invierno Frío-Seco, S2 significa Verano Caluroso-Húmedo, S3 significa picos de producción con tope energético, los beneficios netos esperados (en miles de €), son:
+
+|        | **S1** | **S2** | **S3** |
+|:------:|:------:|:------:|:------:|
+| **K1** |   24   |   16   |   10   |
+| **K2** |   28   |   20   |   15   |
+| **K3** |   26   |   14   |   8    |
+| **K4** |   22   |   18   |   12   |
+
+
+Resolver tanto suponiendo que son costes como suponiendo que son beneficios. 
+
+
+
+## Problema 2
+La empresa alimentaria anterior debe decidir su estrategia comercial principal para el próximo año. Las alternativas son:
+
+D1 – Potenciar su producto más conocido, el jamón cocido bonnatur.  
+
+D2 – Impulsar la producción en el jamón ibérico, tanto pieza entera como cortado y envasado al vacío. 
+
+D3 – Foco en un nuevos productos pre cocinados como pastas y gazpacho. 
+
+Escenarios de demanda:
+
+E1 – Demanda alta (campañas fuertes y tirón exportador)
+
+E2 – Demanda media (mercado estable)
+
+E3 – Demanda baja (ajuste del consumo por crisis/restricciones)
+
+Los beneficios esperados (en miles de euros) son:
+
+|        | **E1** | **E2** | **E3** |
+|:------:|:------:|:------:|:------:|
+| **D1** |  280   |  200   |  100   |
+| **D2** |  320   |  190   |  80    |
+| **D3** |  200   |  170   |  150   |
