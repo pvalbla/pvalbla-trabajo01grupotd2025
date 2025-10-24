@@ -6,9 +6,9 @@ date: "2025-10-22"
 
 # Enunciados Cristóbal Delgado
 
-## Enunciado 1
+## Problema 1
 
-El primer problema a resolver es el dado por la siguiente tabla de desición:
+El primer problema a resolver es el dado por la siguiente tabla de decisión:
 
 ```{r echo = FALSE}
 source("teoriadecision_funciones_incertidumbre.R")
@@ -21,7 +21,7 @@ knitr::kable(tabla_1)
 
 ```
 
-## Enunciado 2
+## Problema 2
 
 Una pareja quiere independizarse e irse a vivir juntos, por lo que están barajando opciones para hipotecarse. Las alternativas son las siguientes:
 
@@ -40,9 +40,10 @@ Después de ver las alternativas, su objetivo es sopesar cual les conviene más 
 
 \newpage
 
-# Problemas Alejandro Jurado Luque
+# Enunciados Alejandro Jurado Luque
 
-## Problema 1: Tabla de Decisión
+## Problema 1: 
+Tabla de Decisión
 
 | Opciones | $E_1$ | $E_2$ | $E_3$ |
 |:--:|:--:|:--:|:--:|
@@ -87,8 +88,8 @@ Las alternativas de decisión son:
 
 La siguiente **matriz de pagos** (en unidades monetarias) recoge beneficios positivos y pérdidas negativas para cada combinación Alternativa–Estado:
 
-|       |  E1 |  E2 |  E3 |
-|:------|----:|----:|----:|
+|        |  E1 |  E2 |  E3 |
+|:-------|----:|----:|----:|
 | **A1** |   8 |  -2 |   5 |
 | **A2** |   4 |   3 |   6 |
 | **A3** |  10 |  -6 |   1 |
@@ -113,8 +114,8 @@ Se consideran cuatro estrategias de precio:
 
 Matriz de **beneficio esperado** (en cientos de euros) estrategia–escenario:
 
-|       |  E1 |  E2 |  E3 |
-|:------|----:|----:|----:|
+|        |  E1 |  E2 |  E3 |
+|:------ |----:|----:|----:|
 | **B1** |   3 |   7 |   4 |
 | **B2** |   2 |   6 |   6 |
 | **B3** |   4 |   5 |   8 |
